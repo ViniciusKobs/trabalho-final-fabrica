@@ -1,31 +1,13 @@
-from flask import Flask, jsonify
+from flask import Flask
+
+from app.controllers.TestController import TestController
+from app.http.dispatcher import dispatch
 
 app = Flask(__name__)
 
-@app.route('/helloworld', methods=["GET", "POST"])
-def hello_world():
-    response = {
-        "message": "Hello World!"
-    }
-    return jsonify(response)
-
-
-@app.route('/start', methods=["GET", "POST"])
-def start():
-    response = {
-        "message": "start!"
-    }
-    return jsonify(response)
-
-
-
-
-
-
-
-
-
-
+@app.route('/test', methods=["GET", "POST"])
+def __test():
+    return dispatch(TestController.index)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
