@@ -1,7 +1,7 @@
 from flask import jsonify
 
-from ..exceptions.PublicException import PublicException
-from ..http.Request import Request
+from ..exceptions.public_exception import PublicException
+from ..http.request import Request
 
 def dispatch(controller):
     try:

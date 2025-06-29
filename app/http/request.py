@@ -1,6 +1,6 @@
 from flask import request
 
-from ..exceptions.PublicException import PublicException
+from ..exceptions.public_exception import PublicException
 
 class Request:
     def __init__(

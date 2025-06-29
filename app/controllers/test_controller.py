@@ -1,4 +1,4 @@
-from ..http.Response import Response
+from ..http.response import Response
 
 class TestController:
     @staticmethod

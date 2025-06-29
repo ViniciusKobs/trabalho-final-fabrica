@@ -1,13 +1,12 @@
 from flask import Flask
 
-from app.controllers.TestController import TestController
-from app.http.dispatcher import dispatch
+from app.database.db import DB
+from app.routes.test_routes import test_route
 
 app = Flask(__name__)
+DB.init(app)
 
-@app.route('/test', methods=["GET", "POST"])
-def __test():
-    return dispatch(TestController.index)
+app.register_blueprint(test_route)
 
 if __name__ == '__main__':
     app.run(debug=True)
