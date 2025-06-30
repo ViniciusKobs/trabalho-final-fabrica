@@ -1,5 +1,4 @@
 from flask import request
-
 from ..exceptions.public_exception import PublicException
 
 class Request:
@@ -20,6 +19,10 @@ class Request:
             self.url       = req.url
             self.headers   = req.headers
             self.body      = req.body
+
+    # def isValid(self)
+    # def isValidOrFail(self)
+    # def validOrFail(self)
 
 
 class RequestDataSource:
