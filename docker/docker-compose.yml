@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  api:
+  marketapi:
     build:
       context: ..
       dockerfile: docker/api.dockerfile
@@ -10,13 +10,12 @@ services:
     volumes:
       - ../app:/app
     networks:
-      - app-network
+      - market_network
     depends_on:
-      - db
+      - marketdb
 
-  db:
+  marketdb:
     image: mysql
-    container_name: db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -27,9 +26,11 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - market_network
 
 networks:
-  app-network:
+  market_network:
     driver: bridge
 
 volumes:

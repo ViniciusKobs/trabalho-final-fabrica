@@ -1,8 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 
-DB_USER = 'user'
-DB_PASSWORD = 'pass'
-DB_HOST = 'db'
+DB_USER = 'root'
+DB_PASSWORD = 'root'
+DB_HOST = 'marketdb'
 DB_PORT = 3306
 DB_NAME = 'market'
 
