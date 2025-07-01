@@ -14,9 +14,17 @@ CREATE TABLE users (
 CREATE TABLE products (
     id          INT PRIMARY KEY AUTO INCREMENT,
     name        VARCHAR(255) NOT NULL UNIQUE,
+    image       TEXT,
     description TEXT,
-    category    VARCHAR(255) NOT NULL,
-    weight      FLOAT NOT NULL
+    category    INT NOT NULL,
+    weight      FLOAT,
+    volume      FLOAT
+)
+
+CREATE TABLE categories (
+    id          INT PRIMARY KEY AUTO INCREMENT,
+    name        VARCHAR(255) NOT NULL UNIQUE,
+    description TEXT
 )
 
 CREATE TABLE markets (
