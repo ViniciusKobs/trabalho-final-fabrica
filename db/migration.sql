@@ -18,22 +18,30 @@ CREATE TABLE products (
     description TEXT,
     category    INT NOT NULL,
     weight      FLOAT,
-    volume      FLOAT
+    volume      FLOAT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
 
 CREATE TABLE categories (
     id          INT PRIMARY KEY AUTO INCREMENT,
     name        VARCHAR(255) NOT NULL UNIQUE,
-    description TEXT
+    description TEXT,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
 
 CREATE TABLE markets (
-    id      INT PRIMARY KEY AUTO INCREMENT,
-    name    VARCHAR(255) NOT NULL UNIQUE,
+    id         INT PRIMARY KEY AUTO INCREMENT,
+    name       VARCHAR(255) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
 
 CREATE TABLE pricing (
     product_id INT,
-    market_id INT,
-    price FLOAT
+    market_id  INT,
+    price      FLOAT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
