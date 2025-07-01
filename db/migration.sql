@@ -10,3 +10,22 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE products (
+    id          INT PRIMARY KEY AUTO INCREMENT,
+    name        VARCHAR(255) NOT NULL UNIQUE,
+    description TEXT,
+    category    VARCHAR(255) NOT NULL,
+    weight      FLOAT NOT NULL
+)
+
+CREATE TABLE markets (
+    id      INT PRIMARY KEY AUTO INCREMENT,
+    name    VARCHAR(255) NOT NULL UNIQUE,
+)
+
+CREATE TABLE pricing (
+    product_id INT,
+    market_id INT,
+    price FLOAT
+)
