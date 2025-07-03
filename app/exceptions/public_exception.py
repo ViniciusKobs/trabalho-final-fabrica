@@ -5,4 +5,4 @@ class PublicException(Exception):
         code = 500
     ):
         self.code = code
-        super(msg)
+        super().__init__(msg)

@@ -20,11 +20,6 @@ class Request:
             self.headers   = req.headers
             self.body      = req.body
 
-    # def isValid(self)
-    # def isValidOrFail(self)
-    # def validOrFail(self)
-
-
 class RequestDataSource:
     def __init__(self, data):
         self.data = data

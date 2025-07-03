@@ -11,4 +11,5 @@ def dispatch(controller):
         return jsonify({ "error": str(e) }), e.code
     except Exception as e:
         return jsonify({ "error": str(e) }), 500
+
         # return jsonify({ "error": "error.internal.unknown" }), 500

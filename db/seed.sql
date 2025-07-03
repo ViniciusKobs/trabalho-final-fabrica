@@ -10,5 +10,3 @@ VALUES (
         'password',
         'email@email.com'
        );
-
-SELECT * FROM users;

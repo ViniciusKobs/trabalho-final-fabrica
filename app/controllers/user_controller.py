@@ -7,6 +7,6 @@ class UserController:
     def register(request):
         registerRequest = UserRegisterRequest(request)
 
-        userRegisterAction(registerRequest.toDtoOrFail())
+        userRegisterAction(registerRequest.toDTO())
 
         return Response.message("success.user.register")
