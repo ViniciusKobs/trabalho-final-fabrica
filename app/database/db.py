@@ -1,10 +1,12 @@
+from os import getenv
+
 from flask_sqlalchemy import SQLAlchemy
 
-DB_USER = 'root'
-DB_PASSWORD = 'root'
-DB_HOST = 'marketdb'
-DB_PORT = 3306
-DB_NAME = 'market'
+DB_USER = getenv("DB_USER")
+DB_PASSWORD = getenv("DB_PASSWORD")
+DB_HOST = getenv("DB_HOST")
+DB_PORT = getenv("DB_PORT")
+DB_NAME = getenv("DB_NAME")
 
 class DB:
     db = SQLAlchemy()
@@ -13,6 +15,7 @@ class DB:
     def init(app):
         app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
         DB.db.init_app(app)
 
     @staticmethod
