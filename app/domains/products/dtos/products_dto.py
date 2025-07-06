@@ -1,7 +1,7 @@
 class ProductsDTO:
     def __init__(
         self,
-        user_id=None,
+        product_id=None,
         brand_id=None,
         name=None,
         description=None,
@@ -13,7 +13,7 @@ class ProductsDTO:
         model=None
     ):
         if model is not None:
-            user_id = model.id
+            product_id = model.id
             brand_id = model.brand_id
             name = model.name
             description = model.description
@@ -23,7 +23,7 @@ class ProductsDTO:
             units = model.units
             length = model.length
 
-        self.id = user_id
+        self.id = product_id
         self.brand_id = brand_id
         self.name = name
         self.description = description
@@ -35,7 +35,7 @@ class ProductsDTO:
 
     def toDict(self):
         return {
-            "user_id":     self.id,
+            "product_id":  self.id,
             "brand_id":    self.brand_id,
             "name":        self.name,
             "description": self.description,
