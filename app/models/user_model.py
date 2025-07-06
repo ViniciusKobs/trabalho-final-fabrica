@@ -19,3 +19,10 @@ class UserModel(DB.db.Model):
             email    = user.email
         )
         DB.add(new_user)
+
+
+    def find_by_email(email):
+        if UserModel.query.filter_by(email=email).exists():
+            return UserModel.query.filter_by(email=email).first()
+        else:
+            return False
