@@ -8,3 +8,8 @@ user_route = Blueprint('user_route', __name__)
 def __user():
     # if request.method == "GET": return dispatch(UserController.register)
     if request.method == "POST": return dispatch(UserController.register)
+
+
+@user_route.route('/login', methods=["POST"])
+def __login():
+    if request.method == "POST": return dispatch(UserController.login)
