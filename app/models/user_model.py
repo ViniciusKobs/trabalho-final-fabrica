@@ -1,5 +1,7 @@
 from uuid import uuid4
 from ..database.db import DB
+from ..exceptions.public_exception import PublicException
+
 
 class UserModel(DB.db.Model):
     __tablename__ = 'users'
@@ -20,9 +22,25 @@ class UserModel(DB.db.Model):
         )
         DB.add(new_user)
 
+    @staticmethod
+    def login(email, password):
+        user = UserModel.query.filter(
+            UserModel.email == email,
+            UserModel.password == password
+        ).first()
 
-    def find_by_email(email):
-        if UserModel.query.filter_by(email=email).exists():
-            return UserModel.query.filter_by(email=email).first()
-        else:
-            return False
+        if user is None: raise PublicException('error.user.invalidCredentials')
+
+        return user.id
+
+    @staticmethod
+    def existsByEmail(email):
+        return UserModel.query.filter(
+            UserModel.email == email,
+        ).first() is not None
+
+    @staticmethod
+    def existsByUsername(username):
+        return UserModel.query.filter(
+            UserModel.username == username,
+        ).first() is not None
