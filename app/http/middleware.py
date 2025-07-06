@@ -12,13 +12,13 @@ def jwt_required(f):
             token = request.headers["Authorization"].split(" ")[1]
 
         if not token:
-            return jsonify({"error": "Token ausente"}), 401
+            return jsonify({"error": "error.token.missing"}), 401
 
         try:
             user_id = validateJwtAndGetId(token)
         except jwt.ExpiredSignatureError:
-            return jsonify({"error": "Token expirado"}), 401
+            return jsonify({"error": "error.token.expired"}), 401
         except jwt.InvalidTokenError:
-            return jsonify({"error": "Token inválido"}), 401
+            return jsonify({"error": "error.token.invalid"}), 401
         return f(*args, **kwargs)
     return decorated
