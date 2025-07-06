@@ -8,12 +8,11 @@ from app.routes.products_routes import products_route
 
 load_dotenv()
 app = Flask(__name__)
-CORS(app, resources={r"/*": {'origins': '*', 'allow_headers': '*', 'methods': '*'}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
 DB.init(app)
 
 app.register_blueprint(test_route)
 app.register_blueprint(user_route)
 app.register_blueprint(products_route)
-
 if __name__ == '__main__':
     app.run(debug=True)
