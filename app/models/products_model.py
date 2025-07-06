@@ -48,3 +48,11 @@ class ProductsModel(DB.db.Model):
                 query = query.order_by(getattr(ProductsModel, order).asc())
 
         return query.all()
+
+    @staticmethod
+    def list_id(product_id):
+        query = ProductsModel.query
+        query = query.filter(ProductsModel.id == product_id).first()
+        if query is None:
+            raise PublicException("error.products.invalidProductId")
+        return query
