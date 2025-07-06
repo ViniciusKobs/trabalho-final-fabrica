@@ -32,7 +32,7 @@ CREATE TABLE products (
     updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE product_categories (
+CREATE TABLE products_categories (
     id          INT PRIMARY KEY AUTO_INCREMENT,
     product_id  INT,
     category_id INT
