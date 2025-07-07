@@ -83,3 +83,55 @@ INSERT INTO pricing (product_id, market_id, price) VALUES
 (9, 5, 2.49),  -- Ketchup at Costco
 (10, 1, 1.99), -- Mac & Cheese at Walmart
 (10, 3, 2.29); -- Mac & Cheese at Tesco
+
+-- Add more pricing entries
+INSERT INTO pricing (product_id, market_id, price) VALUES
+-- Nescafe Classic (already in Walmart, Carrefour)
+(1, 3, 6.29),  -- Nescafe at Tesco
+(1, 4, 5.79),  -- Nescafe at Aldi
+(1, 5, 5.49),  -- Nescafe at Costco
+
+-- Nesquik Chocolate (already in Walmart, Tesco)
+(2, 2, 5.19),  -- Nesquik at Carrefour
+(2, 4, 4.89),  -- Nesquik at Aldi
+(2, 5, 4.49),  -- Nesquik at Costco
+
+-- Coca-Cola Classic (already in Walmart, Carrefour)
+(3, 3, 2.09),  -- Coca-Cola at Tesco
+(3, 4, 1.89),  -- Coca-Cola at Aldi
+(3, 5, 1.79),  -- Coca-Cola at Costco
+
+-- Sprite (already in Walmart, Aldi)
+(4, 2, 1.89),  -- Sprite at Carrefour
+(4, 3, 1.99),  -- Sprite at Tesco
+(4, 5, 1.59),  -- Sprite at Costco
+
+-- Corn Flakes (already in Walmart, Costco)
+(5, 2, 4.19),  -- Corn Flakes at Carrefour
+(5, 3, 4.09),  -- Corn Flakes at Tesco
+(5, 4, 3.79),  -- Corn Flakes at Aldi
+
+-- Rice Krispies (already in Walmart, Tesco)
+(6, 2, 4.39),  -- Rice Krispies at Carrefour
+(6, 4, 4.19),  -- Rice Krispies at Aldi
+(6, 5, 3.99),  -- Rice Krispies at Costco
+
+-- Lay's Classic (already in Walmart, Carrefour)
+(7, 3, 3.89),  -- Lay's at Tesco
+(7, 4, 3.29),  -- Lay's at Aldi
+(7, 5, 3.19),  -- Lay's at Costco
+
+-- Doritos (already in Walmart, Aldi)
+(8, 2, 3.89),  -- Doritos at Carrefour
+(8, 3, 3.99),  -- Doritos at Tesco
+(8, 5, 3.49),  -- Doritos at Costco
+
+-- Heinz Ketchup (already in Walmart, Costco)
+(9, 2, 3.19),  -- Ketchup at Carrefour
+(9, 3, 2.89),  -- Ketchup at Tesco
+(9, 4, 2.79),  -- Ketchup at Aldi
+
+-- Mac & Cheese (already in Walmart, Tesco)
+(10, 2, 2.19), -- Mac & Cheese at Carrefour
+(10, 4, 1.89), -- Mac & Cheese at Aldi
+(10, 5, 1.79); -- Mac & Cheese at Costco
