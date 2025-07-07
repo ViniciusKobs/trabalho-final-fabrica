@@ -48,3 +48,24 @@ class ProductsModel(DB.db.Model):
                 query = query.order_by(getattr(ProductsModel, order).asc())
 
         return query.all()
+
+    @staticmethod
+    def getBestMarket(request):
+        productArray = request.getProducts()
+
+        result = DB.db.session.query(
+            DB.db.models.Pricing.market_id,
+            DB.db.func.sum(DB.db.models.Pricing.price).label('total')
+        ).join(
+            ProductsModel,
+            ProductsModel.id == DB.db.models.Pricing.product_id
+        ).filter(
+            ProductsModel.id.in_(productArray)
+        ).group_by(
+            DB.db.models.Pricing.market_id
+        ).order_by(
+            'total'
+        ).all()
+
+        return result
+
