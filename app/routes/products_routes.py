@@ -8,7 +8,8 @@ products_route = Blueprint('products_route', __name__)
 @jwt_required
 def __products():
     if request.method == "GET": return dispatch(ProductsController.list)
-    if request.method == "POST": return dispatch(ProductsController.calc)
+    if request.method == "POST": return dispatch(ProductsController.search)
+
 
 @products_route.route('/products/{id}', methods=["GET"])
 @jwt_required

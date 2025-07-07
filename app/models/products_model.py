@@ -1,5 +1,8 @@
+from .brands_model import BrandsModel
+from .markets_model import MarketsModel
+from .pricing_model import PricingModel
 from ..database.db import DB
-from sqlalchemy import or_
+from sqlalchemy import or_, text
 
 from ..exceptions.public_exception import PublicException
 
@@ -50,22 +53,33 @@ class ProductsModel(DB.db.Model):
         return query.all()
 
     @staticmethod
-    def getBestMarket(request):
-        productArray = request.getProducts()
+    def getPricesInMarket(products, market):
+        products = (
+            DB.db.session.query(
+                ProductsModel.id.label('product_id'),
+                ProductsModel.name.label('product_name'),
+                ProductsModel.brand_id,
+                BrandsModel.name.label('brand_name'),
+                PricingModel.market_id,
+                MarketsModel.name.label('market_name'),
+                PricingModel.price
+            )
+            .select_from(ProductsModel)
+            .join(PricingModel, ProductsModel.id == PricingModel.product_id)
+            .join(MarketsModel, MarketsModel.id == PricingModel.market_id)
+            .join(BrandsModel, BrandsModel.id == ProductsModel.brand_id)
+            .filter(PricingModel.market_id == market)
+            .filter(ProductsModel.id.in_(products))
+            .all()
+        )
 
-        result = DB.db.session.query(
-            DB.db.models.Pricing.market_id,
-            DB.db.func.sum(DB.db.models.Pricing.price).label('total')
-        ).join(
-            ProductsModel,
-            ProductsModel.id == DB.db.models.Pricing.product_id
-        ).filter(
-            ProductsModel.id.in_(productArray)
-        ).group_by(
-            DB.db.models.Pricing.market_id
-        ).order_by(
-            'total'
-        ).all()
-
-        return result
+        return [{
+            'product_id': row.product_id,
+            'product_name': row.product_name,
+            'brand_id': row.brand_id,
+            'brand_name': row.brand_name,
+            'market_id': row.market_id,
+            'market_name': row.market_name,
+            'price': row.price
+        } for row in products]
 

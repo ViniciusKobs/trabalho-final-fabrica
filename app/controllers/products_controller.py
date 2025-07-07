@@ -1,5 +1,7 @@
 from ..domains.products.actions.products_list_action import productsListAction
+from ..domains.products.actions.products_search_action import productsSearchAction
 from ..domains.products.requests.products_list_request import ProductsListRequest
+from ..domains.products.requests.products_search_request import ProductsSearchRequest
 from ..http.response import Response
 
 class ProductsController:
@@ -12,4 +14,15 @@ class ProductsController:
         return Response({
             "message": "success.products.list",
             "products": products.toArray()
+        })
+
+    @staticmethod
+    def search(request):
+        searchRequest = ProductsSearchRequest(request)
+
+        response = productsSearchAction(searchRequest)
+
+        return Response({
+            "message": "success.products.list",
+            "data": response
         })
