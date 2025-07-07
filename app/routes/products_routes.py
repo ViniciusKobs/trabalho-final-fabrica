@@ -11,7 +11,7 @@ def __products():
     if request.method == "POST": return dispatch(ProductsController.search)
 
 
-@products_route.route('/products/{id}', methods=["GET"])
+@products_route.route('/products/<id>', methods=["GET"])
 @jwt_required
-def __product_id(_id):
+def __product_id(id):
     if request.method == "GET": return dispatch(ProductsController.listById)

@@ -1,5 +1,6 @@
 from ..domains.products.actions.products_list_action import productsListAction
-from ..domains.products.requests.products_list_id_request import ProductsListIdRequest
+from ..domains.products.actions.products_list_by_id_action import productsListByIdAction
+from ..domains.products.requests.products_list_id_request import ProductsListByIdRequest
 from ..domains.products.actions.products_search_action import productsSearchAction
 from ..domains.products.requests.products_list_request import ProductsListRequest
 from ..domains.products.requests.products_search_request import ProductsSearchRequest
@@ -19,9 +20,9 @@ class ProductsController:
 
     @staticmethod
     def listById(request):
-        listIdRequest = ProductsListIdRequest(request)
+        listIdRequest = ProductsListByIdRequest(request)
 
-        product = productsListIdAction(listIdRequest)
+        product = productsListByIdAction(listIdRequest)
 
         return Response({
             "message": "success.products.list",

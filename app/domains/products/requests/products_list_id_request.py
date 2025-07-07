@@ -1,12 +1,6 @@
 from app.http.request import Request
 
-
-class ProductsListIdRequest(Request):
-
+class ProductsListByIdRequest(Request):
         def __init__(self, req):
             super().__init__(req)
-            self.productId = self.url.getOrFail("productId", "error.products.missingProductId")
-
-
-        def getProductId(self):
-            return self.productId
+            self.id = self.url.getOrFail("id", "error.products.missingProductId")
