@@ -60,78 +60,77 @@ INSERT INTO markets (name) VALUES
 ('Tesco'),
 ('Aldi'),
 ('Costco');
+-- First, clear existing pricing data
+DELETE FROM pricing;
 
--- Insert pricing (with realistic prices)
+-- Insert new shuffled pricing data where each product is cheapest at a different market
 INSERT INTO pricing (product_id, market_id, price) VALUES
-(1, 1, 5.99),  -- Nescafe at Walmart
-(1, 2, 6.49),  -- Nescafe at Carrefour
-(2, 1, 4.99),  -- Nesquik at Walmart
-(2, 3, 5.29),  -- Nesquik at Tesco
-(3, 1, 1.99),  -- Coca-Cola at Walmart
-(3, 2, 2.19),  -- Coca-Cola at Carrefour
-(4, 1, 1.79),  -- Sprite at Walmart
-(4, 4, 1.69),  -- Sprite at Aldi
-(5, 1, 3.99),  -- Corn Flakes at Walmart
-(5, 5, 3.49),  -- Corn Flakes at Costco
-(6, 1, 4.29),  -- Rice Krispies at Walmart
-(6, 3, 4.49),  -- Rice Krispies at Tesco
-(7, 1, 3.49),  -- Lay's at Walmart
-(7, 2, 3.99),  -- Lay's at Carrefour
-(8, 1, 3.99),  -- Doritos at Walmart
-(8, 4, 3.79),  -- Doritos at Aldi
-(9, 1, 2.99),  -- Ketchup at Walmart
-(9, 5, 2.49),  -- Ketchup at Costco
-(10, 1, 1.99), -- Mac & Cheese at Walmart
-(10, 3, 2.29); -- Mac & Cheese at Tesco
+-- Nescafe (cheapest at Costco)
+(1, 1, 6.29),  -- Walmart
+(1, 2, 6.49),  -- Carrefour
+(1, 3, 6.19),  -- Tesco
+(1, 4, 5.99),  -- Aldi
+(1, 5, 5.49),  -- Costco
 
--- Add more pricing entries
-INSERT INTO pricing (product_id, market_id, price) VALUES
--- Nescafe Classic (already in Walmart, Carrefour)
-(1, 3, 6.29),  -- Nescafe at Tesco
-(1, 4, 5.79),  -- Nescafe at Aldi
-(1, 5, 5.49),  -- Nescafe at Costco
+-- Nesquik (cheapest at Walmart)
+(2, 1, 4.49),  -- Walmart
+(2, 2, 5.19),  -- Carrefour
+(2, 3, 5.29),  -- Tesco
+(2, 4, 4.89),  -- Aldi
+(2, 5, 4.99),  -- Costco
 
--- Nesquik Chocolate (already in Walmart, Tesco)
-(2, 2, 5.19),  -- Nesquik at Carrefour
-(2, 4, 4.89),  -- Nesquik at Aldi
-(2, 5, 4.49),  -- Nesquik at Costco
+-- Coca-Cola (cheapest at Aldi)
+(3, 1, 2.19),  -- Walmart
+(3, 2, 2.29),  -- Carrefour
+(3, 3, 2.09),  -- Tesco
+(3, 4, 1.79),  -- Aldi
+(3, 5, 1.99),  -- Costco
 
--- Coca-Cola Classic (already in Walmart, Carrefour)
-(3, 3, 2.09),  -- Coca-Cola at Tesco
-(3, 4, 1.89),  -- Coca-Cola at Aldi
-(3, 5, 1.79),  -- Coca-Cola at Costco
+-- Sprite (cheapest at Carrefour)
+(4, 1, 1.89),  -- Walmart
+(4, 2, 1.59),  -- Carrefour
+(4, 3, 1.99),  -- Tesco
+(4, 4, 1.79),  -- Aldi
+(4, 5, 1.89),  -- Costco
 
--- Sprite (already in Walmart, Aldi)
-(4, 2, 1.89),  -- Sprite at Carrefour
-(4, 3, 1.99),  -- Sprite at Tesco
-(4, 5, 1.59),  -- Sprite at Costco
+-- Corn Flakes (cheapest at Tesco)
+(5, 1, 4.19),  -- Walmart
+(5, 2, 4.29),  -- Carrefour
+(5, 3, 3.49),  -- Tesco
+(5, 4, 3.99),  -- Aldi
+(5, 5, 3.89),  -- Costco
 
--- Corn Flakes (already in Walmart, Costco)
-(5, 2, 4.19),  -- Corn Flakes at Carrefour
-(5, 3, 4.09),  -- Corn Flakes at Tesco
-(5, 4, 3.79),  -- Corn Flakes at Aldi
+-- Rice Krispies (cheapest at Aldi)
+(6, 1, 4.29),  -- Walmart
+(6, 2, 4.39),  -- Carrefour
+(6, 3, 4.49),  -- Tesco
+(6, 4, 3.89),  -- Aldi
+(6, 5, 4.19),  -- Costco
 
--- Rice Krispies (already in Walmart, Tesco)
-(6, 2, 4.39),  -- Rice Krispies at Carrefour
-(6, 4, 4.19),  -- Rice Krispies at Aldi
-(6, 5, 3.99),  -- Rice Krispies at Costco
+-- Lay's (cheapest at Walmart)
+(7, 1, 3.19),  -- Walmart
+(7, 2, 3.99),  -- Carrefour
+(7, 3, 3.89),  -- Tesco
+(7, 4, 3.49),  -- Aldi
+(7, 5, 3.59),  -- Costco
 
--- Lay's Classic (already in Walmart, Carrefour)
-(7, 3, 3.89),  -- Lay's at Tesco
-(7, 4, 3.29),  -- Lay's at Aldi
-(7, 5, 3.19),  -- Lay's at Costco
+-- Doritos (cheapest at Costco)
+(8, 1, 3.99),  -- Walmart
+(8, 2, 3.89),  -- Carrefour
+(8, 3, 3.79),  -- Tesco
+(8, 4, 3.69),  -- Aldi
+(8, 5, 3.29),  -- Costco
 
--- Doritos (already in Walmart, Aldi)
-(8, 2, 3.89),  -- Doritos at Carrefour
-(8, 3, 3.99),  -- Doritos at Tesco
-(8, 5, 3.49),  -- Doritos at Costco
+-- Ketchup (cheapest at Carrefour)
+(9, 1, 2.99),  -- Walmart
+(9, 2, 2.49),  -- Carrefour
+(9, 3, 2.89),  -- Tesco
+(9, 4, 2.79),  -- Aldi
+(9, 5, 2.69),  -- Costco
 
--- Heinz Ketchup (already in Walmart, Costco)
-(9, 2, 3.19),  -- Ketchup at Carrefour
-(9, 3, 2.89),  -- Ketchup at Tesco
-(9, 4, 2.79),  -- Ketchup at Aldi
-
--- Mac & Cheese (already in Walmart, Tesco)
-(10, 2, 2.19), -- Mac & Cheese at Carrefour
-(10, 4, 1.89), -- Mac & Cheese at Aldi
-(10, 5, 1.79); -- Mac & Cheese at Costco
+-- Mac & Cheese (cheapest at Tesco)
+(10, 1, 2.29), -- Walmart
+(10, 2, 2.19), -- Carrefour
+(10, 3, 1.79), -- Tesco
+(10, 4, 1.99), -- Aldi
+(10, 5, 1.89); -- Costco
