@@ -1,5 +1,8 @@
+from .brands_model import BrandsModel
+from .markets_model import MarketsModel
+from .pricing_model import PricingModel
 from ..database.db import DB
-from sqlalchemy import or_
+from sqlalchemy import or_, text
 
 from ..exceptions.public_exception import PublicException
 
@@ -56,3 +59,34 @@ class ProductsModel(DB.db.Model):
         if query is None:
             raise PublicException("error.products.invalidProductId")
         return query
+    
+    @staticmethod
+    def getPricesInMarket(products, market):
+        products = (
+            DB.db.session.query(
+                ProductsModel.id.label('product_id'),
+                ProductsModel.name.label('product_name'),
+                ProductsModel.brand_id,
+                BrandsModel.name.label('brand_name'),
+                PricingModel.market_id,
+                MarketsModel.name.label('market_name'),
+                PricingModel.price
+            )
+            .select_from(ProductsModel)
+            .join(PricingModel, ProductsModel.id == PricingModel.product_id)
+            .join(MarketsModel, MarketsModel.id == PricingModel.market_id)
+            .join(BrandsModel, BrandsModel.id == ProductsModel.brand_id)
+            .filter(PricingModel.market_id == market)
+            .filter(ProductsModel.id.in_(products))
+            .all()
+        )
+
+        return [{
+            'product_id': row.product_id,
+            'product_name': row.product_name,
+            'brand_id': row.brand_id,
+            'brand_name': row.brand_name,
+            'market_id': row.market_id,
+            'market_name': row.market_name,
+            'price': row.price
+        } for row in products]
