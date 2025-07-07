@@ -53,6 +53,14 @@ class ProductsModel(DB.db.Model):
         return query.all()
 
     @staticmethod
+    def list_id(product_id):
+        query = ProductsModel.query
+        query = query.filter(ProductsModel.id == product_id).first()
+        if query is None:
+            raise PublicException("error.products.invalidProductId")
+        return query
+    
+    @staticmethod
     def getPricesInMarket(products, market):
         products = (
             DB.db.session.query(
@@ -82,4 +90,3 @@ class ProductsModel(DB.db.Model):
             'market_name': row.market_name,
             'price': row.price
         } for row in products]
-
